@@ -2,21 +2,20 @@
 
 import React from "react";
 
-export const UpIcon = () => {
+export const UpIcon = ({ onClick }) => {
 	return (
 		<div>
 			<svg
-				width="15px"
-				height="15px"
-				viewBox="0 0 24 24"
+				width="8"
+				height="5"
+				viewBox="0 0 8 5"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
+				onClick={onClick}
 			>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
-					d="M7.00003 15.5C6.59557 15.5 6.23093 15.2564 6.07615 14.8827C5.92137 14.509 6.00692 14.0789 6.29292 13.7929L11.2929 8.79289C11.6834 8.40237 12.3166 8.40237 12.7071 8.79289L17.7071 13.7929C17.9931 14.0789 18.0787 14.509 17.9239 14.8827C17.7691 15.2564 17.4045 15.5 17 15.5H7.00003Z"
-					fill="#000000"
+					d="M4 0L7.4641 4.875H0.535898L4 0Z"
+					fill="#D9D9D9"
 				/>
 			</svg>
 		</div>
