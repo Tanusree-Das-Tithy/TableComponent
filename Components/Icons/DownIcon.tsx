@@ -2,7 +2,12 @@
 
 import React from "react";
 
-export const DownIcon = ({ onClick }) => {
+interface IconProps {
+	onClick?: () => void;
+	paint?: string;
+}
+
+export const DownIcon = ({ onClick, paint }: IconProps) => {
 	return (
 		<div>
 			<svg
@@ -16,7 +21,7 @@ export const DownIcon = ({ onClick }) => {
 				<path
 					d="M4 5.5L7.4641 0.625H0.535898L4 5.5Z"
 					className="top"
-					fill="#D9D9D9"
+					fill={paint}
 				/>
 			</svg>
 		</div>

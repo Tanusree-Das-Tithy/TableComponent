@@ -4,15 +4,20 @@ import React, { useState } from "react";
 import Image from "next/image";
 import DownIcon from "./Icons/DownIcon";
 import UpIcon from "./Icons/UpIcon";
-import ProductData from "./ProductData";
+import ProductData, { HeadData } from "./ProductData";
 const headStyle = "flex w-1/6 float-left mt-[16px] mb-[18px]";
 const dataStyle = "w-1/6 float-left mt-[10px]";
 const titleStyle = "w-2/6 float-left mt-[16px] mb-[18px] space-y-[2px]";
+
+type OrderType = { DEF: string; ASC: string; DSC: string };
+const Order: OrderType = { DEF: "DEF", ASC: "ASC", DSC: "DSC" };
+
 export const ProductList = () => {
 	const [data, setData] = useState(ProductData);
-	const [order, setOrder] = useState("DEF");
-	const handleSortDsc = col => {
-		if (order === "DSC" || order === "DEF") {
+	const [order, setOrder] = useState(Order.DEF);
+
+	const handleSortDsc = (col: string) => {
+		if (order === Order.DSC || order === Order.DEF) {
 			const sorted = [...data].sort((a, b) => (a[col] < b[col] ? 1 : -1));
 			setData(sorted);
 			setOrder("ASC");
@@ -20,47 +25,48 @@ export const ProductList = () => {
 	};
 
 	const handleSortAsc = col => {
-		if (order === "ASC" || order === "DEF") {
+		if (order === Order.ASC || order === Order.DEF) {
 			const sorted = [...data].sort((a, b) => (a[col] > b[col] ? 1 : -1));
 			setData(sorted);
 			setOrder("DSC");
 		}
 	};
-
+	const TableHead = () => {
+		return (
+			<thead className="font-semibold text-[13px]">
+				<tr className="h-[50px] text-left">
+					<th className={headStyle}></th>
+					<th className={titleStyle}>Product name</th>
+					{HeadData.map((val, key) => (
+						<>
+							<th
+								className={headStyle}
+								key={key}
+							>
+								<span className=" mr-1">{val.title}</span>
+								<span className="mt-[2px] align-middle">
+									<span className="block space-y-[1px] mt-[4px] align-middle">
+										<UpIcon
+											onClick={() => handleSortAsc(val.actions)}
+											color={order === Order.DSC ? "#0000FF" : "#87CEEB"}
+										/>
+										<DownIcon
+											onClick={() => handleSortDsc(val.actions)}
+											paint={order === Order.ASC ? "#0000FF" : "#87CEEB"}
+										/>
+									</span>
+								</span>
+							</th>
+						</>
+					))}
+				</tr>
+			</thead>
+		);
+	};
 	return (
 		<div className="w-full px-20 overflow-hidden ">
 			<table className=" w-full border-separate bg-white  border-0  rounded-xl">
-				<thead className="font-semibold text-[13px]">
-					<tr className="h-[50px] text-left">
-						<th className={headStyle}></th>
-						<th className={titleStyle}>Product name</th>
-						<th className={headStyle}>
-							<span className=" mr-1">Units sold</span>
-							<span className="mt-[2px] align-middle">
-								<span className="block space-y-[1px] mt-[4px] align-middle">
-									<UpIcon onClick={() => handleSortAsc("units")} />
-
-									<DownIcon onClick={() => handleSortDsc("units")} />
-								</span>
-							</span>
-						</th>
-
-						<th className={headStyle}>
-							<span className=" mr-1">Orders</span>
-							<span className="block space-y-[1px] mt-[4px] align-middle">
-								<UpIcon onClick={() => handleSortAsc("orders")} />
-								<DownIcon onClick={() => handleSortDsc("orders")} />
-							</span>
-						</th>
-						<th className={headStyle}>
-							<span className=" mr-1">Sales</span>
-							<span className="block space-y-[1px] mt-[4px] align-middle">
-								<UpIcon onClick={() => handleSortAsc("sales")} />
-								<DownIcon onClick={() => handleSortDsc("sales")} />
-							</span>
-						</th>
-					</tr>
-				</thead>
+				<TableHead />
 
 				<tbody className="mb-10 font-bold text-[13px]">
 					<tr>

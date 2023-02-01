@@ -1,4 +1,18 @@
 /** @format */
+export const HeadData = [
+	{
+		title: "Units sold",
+		actions: "units",
+	},
+	{
+		title: "Orders",
+		actions: "orders",
+	},
+	{
+		title: "Sales",
+		actions: "sales",
+	},
+];
 export const QuestionData = [
 	{
 		ques: "Do you have a size 4?",
@@ -84,4 +98,5 @@ const ProductData = [
 		sales: 73.95,
 	},
 ];
+
 export default ProductData;

@@ -14,7 +14,7 @@ export const Questions = () => {
 					</tr>
 				</thead>
 
-				<tbody className="mb-10 font-bold text-[13px]">
+				<tbody className="mb-10 font-bold text-[13px] space-y-[14px]">
 					<tr className="mx-[36px] ">
 						<td colSpan={2}>
 							<hr className=" mx-8 border border-hborder" />

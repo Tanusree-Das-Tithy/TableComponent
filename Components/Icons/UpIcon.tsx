@@ -1,8 +1,11 @@
 /** @format */
 
-import React from "react";
-
-export const UpIcon = ({ onClick }) => {
+import React, { useState } from "react";
+interface IconProps {
+	onClick?: () => void;
+	color?: string;
+}
+export const UpIcon = ({ onClick, color }: IconProps) => {
 	return (
 		<div>
 			<svg
@@ -15,7 +18,7 @@ export const UpIcon = ({ onClick }) => {
 			>
 				<path
 					d="M4 0L7.4641 4.875H0.535898L4 0Z"
-					fill="#D9D9D9"
+					fill={color}
 				/>
 			</svg>
 		</div>

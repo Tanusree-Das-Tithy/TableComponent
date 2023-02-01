@@ -1,7 +1,5 @@
 /** @format */
 
-import React from "react";
-import { QuestionData } from "./ProductData";
 import ProductList from "./ProductList";
 import Questions from "./Questions";
 export const Main = () => {
